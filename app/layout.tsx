@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,6 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Projecto FullStack",
+  description: "Plataforma de cursos online de tecnologia."
 };
 
 export default function RootLayout({
@@ -22,9 +24,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt">
+    <html lang="pt" suppressHydrationWarning >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(geistSans.variable, geistMono.variable, "antialiased dark")}
       >
         {children}
       </body>
