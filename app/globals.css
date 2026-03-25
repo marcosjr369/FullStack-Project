@@ -4,8 +4,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
-body{
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 @theme inline {
@@ -134,4 +134,429 @@ body{
 
 button {
   @apply cursor-pointer;
+}
+
+/* ===== RESET DE SOMBRAS ===== */
+.cl-button,
+.cl-input,
+.cl-menuList {
+  @apply !shadow-none;
+}
+
+/* ===== BOTÃO PRIMÁRIO ===== */
+.cl-formButtonPrimary {
+  @apply inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md 
+         bg-primary px-3 font-medium text-primary-foreground !shadow-none 
+         ring-offset-background transition-all duration-200 
+         hover:bg-primary/90 hover:scale-[1.02] 
+         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 
+         disabled:pointer-events-none disabled:opacity-50;
+}
+
+/* ===== CARDS E CONTAINERS PRINCIPAIS ===== */
+/* FORÇANDO BORDA NO CONTAINER PRINCIPAL COM ALTA ESPECIFICIDADE */
+.cl-cardBox,
+.cl-userProfile-root .cl-cardBox,
+.cl-signIn-root .cl-cardBox,
+.cl-signUp-root .cl-cardBox {
+  @apply rounded-xl shadow-sm;
+  position: relative !important;
+  background: var(--background) !important;
+  border: 2px solid hsl(var(--primary)) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Efeito de borda com gradiente no hover */
+.cl-cardBox:hover,
+.cl-userProfile-root .cl-cardBox:hover,
+.cl-signIn-root .cl-cardBox:hover,
+.cl-signUp-root .cl-cardBox:hover {
+  border-color: hsl(var(--primary) / 0.8) !important;
+  box-shadow: 0 8px 30px -4px hsl(var(--primary) / 0.2) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Versão com borda dupla (mais estilosa) - DESCOMENTE SE QUISER */
+/*
+.cl-cardBox,
+.cl-userProfile-root .cl-cardBox {
+  position: relative !important;
+  background: var(--background) !important;
+  border: none !important;
+}
+
+.cl-cardBox::before,
+.cl-userProfile-root .cl-cardBox::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  padding: 2px !important;
+  border-radius: inherit !important;
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))) !important;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) !important;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) !important;
+  -webkit-mask-composite: xor !important;
+  mask-composite: exclude !important;
+  pointer-events: none !important;
+}
+*/
+
+/* Versão com borda neon - DESCOMENTE SE QUISER */
+/*
+.cl-cardBox,
+.cl-userProfile-root .cl-cardBox {
+  border: 1px solid hsl(var(--primary)) !important;
+  box-shadow: 0 0 0 1px hsl(var(--primary) / 0.3), 0 0 0 3px hsl(var(--primary) / 0.1) !important;
+}
+*/
+
+/* Container interno do card - mantendo refinado */
+.cl-card {
+  @apply rounded-xl border border-border/50 bg-background;
+  overflow: hidden;
+}
+
+/* ===== COMPONENTES COM BORDAS PADRÃO ===== */
+.cl-socialButtonsBlockButton,
+.cl-alert,
+.cl-phoneInputBox,
+.cl-userButtonPopoverCard,
+.cl-organizationSwitcherPopoverCard {
+  @apply rounded-lg border border-border bg-background;
+}
+
+/* ===== TEXTOS - FOREGROUND ===== */
+.cl-headerTitle,
+.cl-socialButtonsBlockButtonText,
+.cl-loading,
+.cl-formFieldLabel,
+.cl-formHeaderTitle,
+.cl-selectButton__countryCode,
+.cl-selectButton__countryCode p,
+.cl-selectOption p,
+.cl-selectOption div,
+.cl-modalCloseButton,
+.cl-navbarButton,
+.cl-breadcrumbsItem.cl-breadcrumbsItem__currentPage,
+.cl-profileSectionTitle p,
+.cl-userPreviewTextContainer,
+.cl-organizationPreviewTextContainer,
+.cl-profileSectionContent p,
+.cl-form p,
+.cl-accordionTriggerButton,
+.cl-organizationSwitcherTrigger {
+  @apply text-foreground;
+}
+
+/* ===== TEXTOS - MUTED ===== */
+.cl-formFieldErrorText {
+  @apply !text-destructive;
+}
+
+.cl-headerSubtitle,
+.cl-dividerText,
+.cl-footerActionText,
+.cl-alertText,
+.cl-formFieldInfoText,
+.cl-formFieldSuccessText,
+.cl-identityPreviewText,
+.cl-userButtonPopoverActionButton,
+.cl-userButtonPopoverActionButton svg,
+.cl-userButtonPopoverActionButtonText,
+.cl-organizationSwitcherPopoverActionButton,
+.cl-organizationSwitcherPopoverActionButton svg,
+.cl-organizationSwitcherPopoverActionButtonText,
+.cl-userButtonPopoverFooter p,
+.cl-userButtonPopoverFooter a,
+.cl-formHeaderSubtitle,
+.cl-breadcrumbsItem,
+.cl-breadcrumbsItemDivider,
+.cl-fileDropAreaHint,
+.cl-fileDropAreaFooterHint,
+.cl-form p[data-localization-key="userProfile.emailAddressPage.emailCode.formHint"],
+p[data-localization-key="userProfile.profilePage.successMessage"] {
+  @apply text-muted-foreground;
+}
+
+/* ===== DIVISORES ===== */
+.cl-dividerLine {
+  @apply bg-border;
+}
+
+/* ===== INPUTS ===== */
+.cl-formFieldInput[type="text"],
+.cl-formFieldInput[type="email"],
+.cl-formFieldInput[type="password"] {
+  @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 
+         text-foreground ring-offset-background transition-all duration-200
+         file:border-0 file:bg-transparent file:text-sm file:font-medium 
+         placeholder:text-muted-foreground 
+         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+         hover:border-primary/50
+         disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+/* Input com borda focada mais pronunciada */
+.cl-formFieldInput:focus {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 1px hsl(var(--primary) / 0.2);
+}
+
+/* ===== LINKS ===== */
+.cl-footerActionLink {
+  @apply text-accent-foreground underline decoration-muted-foreground/30 
+         underline-offset-4 transition-all duration-200 
+         hover:text-accent-foreground/90 hover:decoration-accent-foreground/50;
+}
+
+/* ===== OTP CODE ===== */
+.cl-otpCodeFieldInput {
+  @apply !border !border-input text-foreground rounded-md transition-all duration-200;
+}
+
+.cl-otpCodeFieldInput:focus {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+}
+
+.cl-formResendCodeLink {
+  @apply text-primary transition-colors duration-200 hover:text-primary/80 
+         disabled:opacity-90 disabled:hover:text-primary;
+}
+
+/* ===== SELECTS ===== */
+.cl-selectSearchInput__countryCode {
+  @apply flex h-10 w-full rounded-md border border-b border-input bg-background 
+         text-foreground ring-offset-background transition-all duration-200
+         file:border-0 file:bg-transparent file:text-sm file:font-medium 
+         placeholder:text-muted-foreground 
+         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+         hover:border-primary/50
+         disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.cl-selectOptionsContainer__countryCode {
+  @apply border border-input bg-background rounded-md shadow-lg;
+}
+
+/* ===== ÍCONES ===== */
+.cl-internal-icon,
+.cl-userPreviewSecondaryIdentifier__userButton {
+  @apply text-foreground;
+}
+
+/* ===== BOTÃO DELETE ===== */
+button[data-localization-key="userProfile.start.dangerSection.deleteAccountButton"] {
+  @apply bg-destructive text-white transition-all duration-200 
+         hover:bg-destructive/90 hover:scale-[1.02] hover:text-white 
+         focus:ring-2 focus:ring-destructive/50;
+}
+
+/* ===== FILE DROP AREA ===== */
+.cl-fileDropAreaBox {
+  @apply dark:bg-gray-900 rounded-lg border-2 border-dashed border-border 
+         transition-all duration-200 hover:border-primary/50;
+}
+
+.cl-fileDropAreaIconBox {
+  @apply dark:bg-gray-800 rounded-full;
+}
+
+.cl-fileDropAreaIcon {
+  @apply dark:text-gray-400;
+}
+
+.cl-fileDropAreaButtonPrimary {
+  @apply h-10 px-4 py-2 text-foreground transition-all duration-200 
+         hover:bg-secondary hover:text-accent-foreground rounded-md;
+}
+
+/* ===== BOTÕES DE AÇÃO ===== */
+.cl-userButtonPopoverActionButton,
+.cl-organizationSwitcherPopoverActionButton,
+.cl-profileSectionPrimaryButton,
+.cl-accordionTriggerButton,
+.cl-navbarButton {
+  @apply transition-all duration-200 rounded-md 
+         hover:bg-sidebar-accent hover:text-sidebar-accent-foreground 
+         hover:scale-[1.02];
+}
+
+.cl-navbarButton[data-active="true"] {
+  @apply bg-sidebar-accent text-sidebar-accent-foreground shadow-sm;
+}
+
+/* ===== POPOVERS ===== */
+.cl-userButtonPopoverCard {
+  @apply rounded-xl shadow-lg border border-border/50;
+}
+
+.cl-userButtonPopoverMain,
+.cl-organizationSwitcherPopoverMain {
+  @apply rounded-xl border border-border/50 bg-background shadow-lg;
+}
+
+.cl-userButtonPopoverFooter a {
+  @apply transition-colors duration-200 hover:text-muted-foreground;
+}
+
+/* ===== BADGES ===== */
+.cl-badge {
+  @apply rounded-full border border-input bg-background px-2.5 py-0.5 
+         text-xs text-foreground !shadow-none transition-all duration-200;
+}
+
+.cl-badge[data-localization-key="badge__unverified"] {
+  @apply border-destructive/50 bg-transparent text-destructive 
+         dark:text-red-400 dark:border-red-400/30;
+}
+
+/* ===== BOTÕES SECUNDÁRIOS ===== */
+.cl-formButtonReset {
+  @apply text-foreground transition-all duration-200 
+         hover:bg-secondary hover:scale-[1.02] rounded-md;
+}
+
+/* ===== FOOTER ===== */
+.cl-footer {
+  @apply rounded-b-xl border-x border-b border-border/50 
+         bg-gradient-to-t from-background to-background/80 
+         text-muted-foreground backdrop-blur-sm;
+}
+
+.cl-userButtonPopoverFooter,
+.cl-organizationSwitcherPopoverFooter {
+  @apply rounded-b-xl bg-gradient-to-t from-background to-background/80 
+         border-t border-border/30;
+}
+
+/* ===== PÁGINAS DE AUTENTICAÇÃO ===== */
+.cl-signIn-start,
+.cl-signUp-start,
+.cl-signIn-password,
+.cl-signIn-alternativeMethods,
+.cl-signIn-emailCode {
+  @apply rounded-b-none border-b-0;
+}
+
+/* ===== BOTÕES SOCIAIS ===== */
+.cl-socialButtonsBlockButton {
+  @apply h-10 !border border-border rounded-lg transition-all duration-200 
+         hover:border-primary/50 hover:bg-muted/50 hover:scale-[1.02];
+}
+
+.cl-alternativeMethods .cl-alternativeMethodsBlockButton {
+  @apply h-10 !border border-border text-muted-foreground rounded-lg 
+         transition-all duration-200 hover:border-primary/50 hover:bg-muted/50;
+}
+
+.cl-alternativeMethodsBlockButton {
+  @apply h-10 !shadow-none transition-all duration-200;
+}
+
+/* ===== NAVBAR ===== */
+.cl-navbar {
+  @apply rounded-xl border-y border-l border-border/50 
+         bg-gradient-to-t from-background to-background/80 
+         shadow-sm backdrop-blur-sm;
+}
+
+.cl-scrollBox {
+  @apply rounded-xl rounded-l-none border border-border/50 
+         bg-gradient-to-t from-background to-background/80;
+}
+
+/* ===== HEADERS ===== */
+h1[data-localization-key="userProfile.navbar.title"] {
+  @apply text-foreground;
+}
+
+.cl-profilePage > .cl-header {
+  @apply border-b border-border/50;
+}
+
+.cl-profileSection__profile,
+.cl-profileSection__emailAddresses {
+  @apply border-b border-border/50;
+}
+
+/* ===== MENUS ===== */
+.cl-menuButton {
+  @apply text-foreground transition-colors duration-200 
+         hover:text-foreground/80;
+}
+
+.cl-menuList {
+  @apply border border-border/50 bg-background rounded-lg shadow-lg;
+}
+
+.cl-actionCard {
+  @apply border border-border/50 bg-background !shadow-none rounded-lg 
+         transition-all duration-200 hover:border-primary/30;
+}
+
+.cl-menuItem[data-color="neutral"] {
+  @apply text-foreground transition-colors duration-200 
+         hover:bg-muted rounded-md;
+}
+
+/* ===== AVATAR ===== */
+.cl-avatarImageActionsUpload {
+  @apply !border border-border rounded-full transition-all duration-200 
+         hover:border-primary/50;
+}
+
+/* ===== SELECT BUTTON ===== */
+.cl-selectButton {
+  @apply !border !border-input rounded-md transition-all duration-200 
+         hover:border-primary/50;
+}
+
+/* ===== ANIMAÇÕES ADICIONAIS ===== */
+/* Efeito de brilho suave em elementos interativos */
+.cl-button,
+.cl-formButtonPrimary,
+.cl-socialButtonsBlockButton,
+.cl-alternativeMethodsBlockButton {
+  position: relative;
+  overflow: hidden;
+}
+
+.cl-button::after,
+.cl-formButtonPrimary::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+  pointer-events: none;
+}
+
+.cl-button:active::after,
+.cl-formButtonPrimary:active::after {
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  transition: 0s;
+}
+
+/* Scrollbar personalizada para dark mode */
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-background rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full hover:bg-muted-foreground/30;
+  }
 }

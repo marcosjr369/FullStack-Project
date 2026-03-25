@@ -6,9 +6,9 @@ export const NavUser = () => {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-        <div className="py-2">
-          <Link href="/auth/login" passHref className="w-full">
-            <Button variant="outline" className="w-full h-10">Entrar</Button>
+        <div className="py-2 group-data-[state=collapsed]:hidden">
+          <Link href="/auth/sign-in" passHref className="w-full">
+            <Button className="w-full h-10 bg-primary text-primary-foreground hover:bg-primary/90">Entrar</Button>
           </Link>
         </div>
       </SidebarMenuItem>

@@ -54,7 +54,7 @@ const AuthButtons = () => {
         className="hidden md:inline-flex px-3"
         asChild
       >
-        <Link href="/auth/register">
+        <Link href="/auth/sign-up">
           <UserPlus className="mr-2 h-4 w-4 md:hidden" />
           <span className="hidden md:inline">Criar conta</span>
           <span className="md:hidden">Registro</span>
@@ -65,7 +65,7 @@ const AuthButtons = () => {
         asChild
         className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-3"
       >
-        <Link href="/auth/login">
+        <Link href="/auth/sign-in">
           <LogIn className="h-4 w-4" />
           <span className="hidden sm:inline">Entrar</span>
           <span className="sm:hidden">Login</span>
